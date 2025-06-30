@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Navigating with Annealing Guidance Scale in Diffusion Space</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-KBKFF5WPJF"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-KBKFF5WPJF');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">Navigating with Annealing Guidance Scale in Diffusion Space</h1>
+          
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">Anonymous Authors</span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"></span>
+          </div>
+
+          <br>
+          <div>
+            <h1 class="title"></h1>
+          </div>
+          <br>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/annealing-guidance/annealing-guidance"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code (coming soon)</span>
+                </a>
+              </span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <!-- <img src="static/images/teaser.jpg"> -->
+<h2 class="subtitle has-text-centered">
+  We introduce a <b>learning-based guidance scheduler</b> for denoising diffusion models that adaptively adjusts the guidance scale during generation.
+</h2>
+<h3 class="subtitle has-text-centered">
+  By leveraging the difference between conditional and unconditional predictions of a diffusion model, our scheduler provides sample-specific, trajectory-aware guidance that achieves a superior balance between image quality and prompt alignment, outperforming existing methods on CLIP, FID, and FD-DINO — without added computational cost.
+</h3>
+
+    </div>
+  </div>
+</section>
+<img src="static/images/teaser.jpg" style="margin-bottom: 30px;">
+
+
+<div class="container">
+
+  <div id="results-carousel" class="carousel" data-autoplay="true" data-delay="3000">
+    <div class="item">
+      <img src="static/images/carousel/image_1.jpg" alt="img1">
+      <h2 class="subtitle has-text-centered">
+        "A <span style='color: red;'>photo</span> of unicorn driving a jeep in the desert"
+      </h2>
+    </div>
+    <div class="item">
+      <img src="static/images/carousel/image_2.jpg" alt="img2">
+      <h2 class="subtitle has-text-centered">
+        "A <span style='color: red;'>knight in rainbow armor</span> riding a <span style='color: red;'>dragon made of fire</span>"
+      </h2>
+    </div>
+    <div class="item">
+      <img src="static/images/carousel/image_3.jpg" alt="img3">
+      <h2 class="subtitle has-text-centered">
+        "A cat looking through a <span style='color: red;'>glass of water</span>"
+      </h2>
+    </div>
+    <div class="item">
+      <img src="static/images/carousel/image_4.jpg" alt="img4">
+      <h2 class="subtitle has-text-centered">
+        "A <span style='color: red;'>yellow dog</span> runs to grab a yellow frisbee in the grass"
+      </h2>
+    </div>
+    <div class="item">
+      <img src="static/images/carousel/image_5.jpg" alt="img5">
+      <h2 class="subtitle has-text-centered">
+        "Bear cubs play among the fallen tree limbs"
+      </h2>
+    </div>
+    <div class="item">
+      <img src="static/images/carousel/image_6.jpg" alt="img6">
+      <h2 class="subtitle has-text-centered">
+        "A traffic sign that has a picture of a <span style='color: red;'>man holding a surfboard</span> on it"
+      </h2>
+    </div>
+    <div class="item">
+      <img src="static/images/carousel/image_7.jpg" alt="img7">
+      <h2 class="subtitle has-text-centered">
+        "Two dogs, One Cat"
+      </h2>
+    </div>
+  </div>
+</div>
+
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+
+          Denoising diffusion models excel at generating high-quality images conditioned on text prompts,  
+          yet their effectiveness heavily relies on careful guidance during the sampling process.  
+          Classifier-Free Guidance (CFG) provides a widely used mechanism for steering generation by setting the guidance scale,  
+          which balances image
+          
+          quality and prompt alignment. 
+          However, the choice of the guidance scale has a critical impact on the convergence toward a visually appealing and prompt-adherent image.
+          In this work, we propose an annealing guidance scheduler
+          which dynamically adjusts the guidance scale over time based on the conditional noisy signal. 
+          By learning a scheduling policy, our method addresses the temperamental behavior of CFG.  
+          Empirical results demonstrate that our guidance scheduler significantly enhances image
+          
+          quality and alignment with the text prompt,  
+          advancing the performance of text-to-image generation. 
+          Notably, our novel scheduler requires no additional activations or memory consumption, 
+          and can seamlessly replace the common classifier-free guidance, 
+          offering an improved trade-off between prompt
+          alignment and quality.
+
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+<section class="hero is-small">
+  <div class="hero-body">
+    <div class="container is-max-desktop is-centered has-text-centered">
+      <h2 class="title is-3">Annealing Guidance Scale</h2>
+<div class="columns is-centered is-vcentered">
+  <div class="column is-half has-text-centered">
+    <figure style="display: inline-block;">
+      <img src="static/images/alg_cfg.jpg" style="max-height:500px; width:auto;" alt="CFG Inference">
+      <figcaption><small><b>CFG</b></small></figcaption>
+    </figure>
+  </div>
+  <div class="column is-half has-text-centered">
+    <figure style="display: inline-block;">
+      <img src="static/images/alg_ours.jpg" style="max-height:500px; width:auto;" alt="Ours (Adaptive Scheduler)">
+      <figcaption><small><b>Annealing Scheduler (Ours)</b></small></figcaption>
+    </figure>
+  </div>
+</div>
+      <div class="content has-text-justified">
+<p>
+  Our method replaces the fixed guidance scale used in CFG <b>(left)</b> with a learned scheduler that adaptively adjusts the guidance strength at every denoising step <span style="color: red;">(highlighted in red)</span>, as shown in <b>our algorithm (right)</b>. Instead of using a constant guidance scale, the scheduler computes a sample-specific value based on the current timestep, the difference between the model's conditional and unconditional predictions, and a user-defined prompt-alignment trade-off parameter &lambda;, which offers superior control than traditional guidance scale <code>w</code>. Similarly to CFG++, we use the null-condition prediction at the renoising step <span style="color: red;">(highlighted in red)</span>.
+
+</p>
+
+
+      </div>
+      <div class="columns is-vcentered is-centered">
+        <div class="column is-half is-flex is-justify-content-center is-align-items-center">
+          <img class="my-image" src="static\images\anneal\anneal_images.jpg" style="max-height:500px; width:auto;">
+        </div>
+        <div class="column is-half is-flex is-justify-content-center is-align-items-center">
+          <img class="my-image" src="static\images\anneal\anneal_plot.jpg" style="max-height:500px; width:auto;">
+        </div>
+      </div>
+
+      <div class="content has-text-justified">
+<p>
+  Here, we show how our annealing guidance scheduler adapts the guidance scale over time for two example prompts: <b><span style="color:violet;">A</span></b> and <b><span style="color:blue;">B</span></b>. On the <b>right</b>, the plot shows that while CFG++ uses a constant guidance value, our method dynamically adjusts the scale throughout the denoising process — with trajectories that vary across prompts and even between different random seeds. CFG is not shown in the plot for clarity, but it uses a fixed scale of <code>w = 10</code>. On the <b>left</b>, we compare outputs from CFG (left column), CFG++ (middle), and our method (right) for each prompt. Our approach improves both visual quality and prompt alignment — correcting distorted hands in <b><span style="color:violet;">A</span></b> and fixing object count errors in <b><span style="color:blue;">B</span></b>.
+</p>
+
+
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<section class="hero is-small">
+  <div class="hero-body">
+    <div class="container is-max-desktop is-centered has-text-centered">
+      <h2 class="title is-3">Results</h2>
+
+      <div class="content has-text-justified">
+        <p>
+          We evaluate our method on the COCO evaluation set and visualize the trade-off between image quality and prompt alignment. We report FID and FD-DINO for image quality, and CLIP for prompt alignment. 
+        </p>
+      </div>
+
+      <!-- Side-by-side tradeoff figures -->
+      <div class="columns is-centered is-vcentered">
+        <div class="column is-half is-flex is-justify-content-center">
+          <img class="my-image" src="static\metrics\fid_vs_clip.jpg" style="max-height:400px; width:auto;">
+        </div>
+        <div class="column is-half is-flex is-justify-content-center">
+          <img class="my-image" src="static\metrics\fd_dino_vs_clip.jpg" style="max-height:400px; width:auto;">
+        </div>
+      </div>
+
+      <div class="content has-text-justified">
+        <p>
+          As shown in the plots, our method achieves a more favorable trade-off curve compared to existing guidance methods.
+        </p>
+      </div>
+
+      
+
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<div class="columns is-centered is-multiline">
+  <div class="column is-one-quarter">
+    <figure class="tight-figure">
+      <figcaption class="has-text-centered is-size-5">CFG</figcaption>
+      <img class="my-image" src="static/images/comparison/cfg_1.jpg" style="width:100%;">
+    </figure>
+  </div>
+  <div class="column is-one-quarter">
+    <figure class="tight-figure">
+      <figcaption class="has-text-centered has-text-weight-bold is-size-5">Ours</figcaption>
+      <img class="my-image" src="static/images/comparison/ours_cfg_1.jpg" style="width:100%;">
+    </figure>
+  </div>
+  <div class="column is-one-quarter">
+    <figure class="tight-figure">
+      <figcaption class="has-text-centered is-size-5">CFG++</figcaption>
+      <img class="my-image" src="static/images/comparison/cfgpp_1.jpg" style="width:100%;">
+    </figure>
+  </div>
+  <div class="column is-one-quarter">
+    <figure class="tight-figure">
+      <figcaption class="has-text-centered has-text-weight-bold is-size-5">Ours</figcaption>
+      <img class="my-image" src="static/images/comparison/ours_cfgpp_1.jpg" style="width:100%;">
+    </figure>
+  </div>
+</div>
+
+<div class="columns is-centered prompt-row">
+  <div class="column is-half has-text-centered">
+    <p class="is-italic is-size-6 tight-prompt">"A dog running with a stick <span style='color: red;'>in its mouth</span>, eiffel tower in the background"</p>
+  </div>
+  <div class="column is-half has-text-centered">
+    <p class="is-italic is-size-6 tight-prompt">"Photo of a bear wearing colorful glasses: <span style='color: red;'>left glass is red, right is blue</span>"</p>
+  </div>
+</div>
+
+
+<div class="columns is-centered is-multiline">
+  <div class="column is-one-quarter">
+    <figure class="tight-figure">
+      <img class="my-image" src="static/images/comparison/cfg_2.jpg" style="width:100%;">
+    </figure>
+  </div>
+  <div class="column is-one-quarter">
+    <figure class="tight-figure">
+      <img class="my-image" src="static/images/comparison/ours_cfg_2.jpg" style="width:100%;">
+    </figure>
+  </div>
+  <div class="column is-one-quarter">
+    <figure class="tight-figure">
+      <img class="my-image" src="static/images/comparison/cfgpp_2.jpg" style="width:100%;">
+    </figure>
+  </div>
+  <div class="column is-one-quarter">
+    <figure class="tight-figure">
+      <img class="my-image" src="static/images/comparison/ours_cfgpp_2.jpg" style="width:100%;">
+    </figure>
+  </div>
+</div>
+
+<div class="columns is-centered prompt-row">
+  <div class="column is-half has-text-centered">
+    <p class="is-italic is-size-6 tight-prompt">"a statue of Abraham Lincoln wearing an opaque and shiny <span style='color: red;'>astronaut's helmet</span>. The statue sits on the moon..."</p>
+  </div>
+  <div class="column is-half has-text-centered">
+    <p class="is-italic is-size-6 tight-prompt">"A <span style='color: red;'>gloved</span> hand holding a strawberry milkshake in a cup, complete with a straw and umbrella, with Earth visible in the distance on the moon horizon"</p>
+  </div>
+</div>
+
+<div class="columns is-centered is-multiline">
+  <div class="column is-one-quarter">
+    <figure class="tight-figure">
+      <img class="my-image" src="static/images/comparison/cfg_3.jpg" style="width:100%;">
+    </figure>
+  </div>
+  <div class="column is-one-quarter">
+    <figure class="tight-figure">
+      <img class="my-image" src="static/images/comparison/ours_cfg_3.jpg" style="width:100%;">
+    </figure>
+  </div>
+  <div class="column is-one-quarter">
+    <figure class="tight-figure">
+      <img class="my-image" src="static/images/comparison/cfgpp_3.jpg" style="width:100%;">
+    </figure>
+  </div>
+  <div class="column is-one-quarter">
+    <figure class="tight-figure">
+      <img class="my-image" src="static/images/comparison/ours_cfgpp_3.jpg" style="width:100%;">
+    </figure>
+  </div>
+</div>
+
+<div class="columns is-centered prompt-row">
+  <div class="column is-half has-text-centered">
+    <p class="is-italic is-size-6 tight-prompt">"<span style='color: red;'>A bride</span> and groom cutting their wedding cake"</p>
+  </div>
+  <div class="column is-half has-text-centered">
+    <p class="is-italic is-size-6 tight-prompt">"<span style='color: red;'>Three</span> Young Foxes by Kain Shannon"</p>
+  </div>
+</div>
+
+<div class="columns is-centered is-multiline">
+  <div class="column is-one-quarter">
+    <figure class="tight-figure">
+      <img class="my-image" src="static/images/comparison/cfg_4.jpg" style="width:100%;">
+    </figure>
+  </div>
+  <div class="column is-one-quarter">
+    <figure class="tight-figure">
+      <img class="my-image" src="static/images/comparison/ours_cfg_4.jpg" style="width:100%;">
+    </figure>
+  </div>
+  <div class="column is-one-quarter">
+    <figure class="tight-figure">
+      <img class="my-image" src="static/images/comparison/cfgpp_4.jpg" style="width:100%;">
+    </figure>
+  </div>
+  <div class="column is-one-quarter">
+    <figure class="tight-figure">
+      <img class="my-image" src="static/images/comparison/ours_cfgpp_4.jpg" style="width:100%;">
+    </figure>
+  </div>
+</div>
+
+<div class="columns is-centered prompt-row">
+  <div class="column is-half has-text-centered">
+    <p class="is-italic is-size-6 tight-prompt">"<span style='color: red;'>Five</span> red balls on a table"</p>
+  </div>
+  <div class="column is-half has-text-centered">
+    <p class="is-italic is-size-6 tight-prompt">"A <span style='color: red;'>dog</span> chasing a cat in a desert, at high speed"</p>
+  </div>
+</div>
+
+<div class="columns is-centered is-multiline">
+  <div class="column is-one-quarter">
+    <figure class="tight-figure">
+      <img class="my-image" src="static/images/comparison/cfg_5.jpg" style="width:100%;">
+    </figure>
+  </div>
+  <div class="column is-one-quarter">
+    <figure class="tight-figure">
+      <img class="my-image" src="static/images/comparison/ours_cfg_5.jpg" style="width:100%;">
+    </figure>
+  </div>
+  <div class="column is-one-quarter">
+    <figure class="tight-figure">
+      <img class="my-image" src="static/images/comparison/cfgpp_5.jpg" style="width:100%;">
+    </figure>
+  </div>
+  <div class="column is-one-quarter">
+    <figure class="tight-figure">
+      <img class="my-image" src="static/images/comparison/ours_cfgpp_5.jpg" style="width:100%;">
+    </figure>
+  </div>
+</div>
+
+<div class="columns is-centered prompt-row">
+  <div class="column is-half has-text-centered">
+    <p class="is-italic is-size-6 tight-prompt">"A demonic looking chucky like doll standing next to a <span style='color: red;'>white clock</span>"</p>
+  </div>
+  <div class="column is-half has-text-centered">
+    <p class="is-italic is-size-6 tight-prompt">"A ghost sitting on a living room chair"</p>
+  </div>
+</div>
+
+
+<div class="columns is-centered is-multiline">
+  <div class="column is-one-quarter">
+    <figure class="tight-figure">
+      <img class="my-image" src="static/images/comparison/cfg_6.jpg" style="width:100%;">
+    </figure>
+  </div>
+  <div class="column is-one-quarter">
+    <figure class="tight-figure">
+      <img class="my-image" src="static/images/comparison/ours_cfg_6.jpg" style="width:100%;">
+    </figure>
+  </div>
+  <div class="column is-one-quarter">
+    <figure class="tight-figure">
+      <img class="my-image" src="static/images/comparison/cfgpp_6.jpg" style="width:100%;">
+    </figure>
+  </div>
+  <div class="column is-one-quarter">
+    <figure class="tight-figure">
+      <img class="my-image" src="static/images/comparison/ours_cfgpp_6.jpg" style="width:100%;">
+    </figure>
+  </div>
+</div>
+
+<div class="columns is-centered prompt-row">
+  <div class="column is-half has-text-centered">
+    <p class="is-italic is-size-6 tight-prompt">"<span style='color: red;'>A girl</span> riding a giant bird over a futuristic city"</p>
+  </div>
+  <div class="column is-half has-text-centered">
+    <p class="is-italic is-size-6 tight-prompt">"A yellow <span style='color: red;'>diamond-shaped</span> sign with a deer silhouette"</p>
+  </div>
+</div>
+
+
+<div class="columns is-centered is-multiline">
+  <div class="column is-one-quarter">
+    <figure class="tight-figure">
+      <img class="my-image" src="static/images/comparison/cfg_7.jpg" style="width:100%;">
+    </figure>
+  </div>
+  <div class="column is-one-quarter">
+    <figure class="tight-figure">
+      <img class="my-image" src="static/images/comparison/ours_cfg_7.jpg" style="width:100%;">
+    </figure>
+  </div>
+  <div class="column is-one-quarter">
+    <figure class="tight-figure">
+      <img class="my-image" src="static/images/comparison/cfgpp_7.jpg" style="width:100%;">
+    </figure>
+  </div>
+  <div class="column is-one-quarter">
+    <figure class="tight-figure">
+      <img class="my-image" src="static/images/comparison/ours_cfgpp_7.jpg" style="width:100%;">
+    </figure>
+  </div>
+</div>
+
+<div class="columns is-centered prompt-row">
+  <div class="column is-half has-text-centered">
+    <p class="is-italic is-size-6 tight-prompt">"<span style='color: red;'>A small boy</span> trying to fly a small kite"</p>
+  </div>
+  <div class="column is-half has-text-centered">
+    <p class="is-italic is-size-6 tight-prompt">"There is a <span style='color: red;'>stop</span> sign outside of a window"</p>
+  </div>
+</div>
+
+
+<div class="columns is-centered is-multiline">
+  <div class="column is-one-quarter">
+    <figure class="tight-figure">
+      <img class="my-image" src="static/images/comparison/cfg_8.jpg" style="width:100%;">
+    </figure>
+  </div>
+  <div class="column is-one-quarter">
+    <figure class="tight-figure">
+      <img class="my-image" src="static/images/comparison/ours_cfg_8.jpg" style="width:100%;">
+    </figure>
+  </div>
+  <div class="column is-one-quarter">
+    <figure class="tight-figure">
+      <img class="my-image" src="static/images/comparison/cfgpp_8.jpg" style="width:100%;">
+    </figure>
+  </div>
+  <div class="column is-one-quarter">
+    <figure class="tight-figure">
+      <img class="my-image" src="static/images/comparison/ours_cfgpp_8.jpg" style="width:100%;">
+    </figure>
+  </div>
+</div>
+
+<div class="columns is-centered prompt-row">
+  <div class="column is-half has-text-centered">
+    <p class="is-italic is-size-6 tight-prompt">"A portrait of a statue of a pharaoh wearing steampunk glasses, <span style='color: red;'>white t-shirt</span> and leather jacket. dslr photograph"</p>
+  </div>
+  <div class="column is-half has-text-centered">
+    <p class="is-italic is-size-6 tight-prompt">"An old man lifts a barbell above his head"</p>
+  </div>
+</div>
+
+
+<div class="columns is-centered is-multiline">
+  <div class="column is-one-quarter">
+    <figure class="tight-figure">
+      <img class="my-image" src="static/images/comparison/cfg_9.jpg" style="width:100%;">
+    </figure>
+  </div>
+  <div class="column is-one-quarter">
+    <figure class="tight-figure">
+      <img class="my-image" src="static/images/comparison/ours_cfg_9.jpg" style="width:100%;">
+    </figure>
+  </div>
+  <div class="column is-one-quarter">
+    <figure class="tight-figure">
+      <img class="my-image" src="static/images/comparison/cfgpp_9.jpg" style="width:100%;">
+    </figure>
+  </div>
+  <div class="column is-one-quarter">
+    <figure class="tight-figure">
+      <img class="my-image" src="static/images/comparison/ours_cfgpp_9.jpg" style="width:100%;">
+    </figure>
+  </div>
+</div>
+
+<div class="columns is-centered prompt-row">
+  <div class="column is-half has-text-centered">
+    <p class="is-italic is-size-6 tight-prompt">"A baby sitting on a <span style='color: red;'>female's</span> lap staring into the camera"</p>
+  </div>
+  <div class="column is-half has-text-centered">
+    <p class="is-italic is-size-6 tight-prompt">"A white bear in glasses, wearing tuxedo, glowing hat, and with <span style='color: red;'>cigare</span> at the British queen reception"</p>
+  </div>
+</div>
+
+<div class="columns is-centered is-multiline">
+  <div class="column is-one-quarter">
+    <figure class="tight-figure">
+      <img class="my-image" src="static/images/comparison/cfg_10.jpg" style="width:100%;">
+    </figure>
+  </div>
+  <div class="column is-one-quarter">
+    <figure class="tight-figure">
+      <img class="my-image" src="static/images/comparison/ours_cfg_10.jpg" style="width:100%;">
+    </figure>
+  </div>
+  <div class="column is-one-quarter">
+    <figure class="tight-figure">
+      <img class="my-image" src="static/images/comparison/cfgpp_10.jpg" style="width:100%;">
+    </figure>
+  </div>
+  <div class="column is-one-quarter">
+    <figure class="tight-figure">
+      <img class="my-image" src="static/images/comparison/ours_cfgpp_10.jpg" style="width:100%;">
+    </figure>
+  </div>
+</div>
+
+<div class="columns is-centered prompt-row">
+  <div class="column is-half has-text-centered">
+    <p class="is-italic is-size-6 tight-prompt">"<span style='color: red;'>A</span> tropical bird"</p>
+  </div>
+  <div class="column is-half has-text-centered">
+    <p class="is-italic is-size-6 tight-prompt">"A photo of a ram and a <span style='color: red;'>polar bear</span> walking in London."</p>
+  </div>
+</div>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            Website source code based on the <a href="https://nerfies.github.io/">Nerfies</a> project page. If you want to reuse their <a href="https://github.com/nerfies/nerfies.github.io">source code</a>, please credit them appropriately.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
