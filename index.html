@@ -200,20 +200,21 @@
   <div class="hero-body">
     <div class="container is-max-desktop is-centered has-text-centered">
       <h2 class="title is-3">Annealing Guidance Scale</h2>
-<div class="columns is-centered is-vcentered">
-  <div class="column is-half has-text-centered">
-    <figure style="display: inline-block;">
-      <img src="static/images/alg_cfg.jpg" style="max-height:500px; width:auto;" alt="CFG Inference">
-      <figcaption><small><b>CFG</b></small></figcaption>
-    </figure>
-  </div>
-  <div class="column is-half has-text-centered">
-    <figure style="display: inline-block;">
-      <img src="static/images/alg_ours.jpg" style="max-height:500px; width:auto;" alt="Ours (Adaptive Scheduler)">
-      <figcaption><small><b>Annealing Scheduler (Ours)</b></small></figcaption>
-    </figure>
-  </div>
-</div>
+      <div class="columns is-mobile is-centered is-vcentered">
+        <div class="column is-half has-text-centered">
+          <figure style="display: inline-block;">
+            <img src="static/images/alg_cfg.jpg" style="max-width:100%; height:auto;" alt="CFG Inference">
+            <figcaption><small><b>CFG</b></small></figcaption>
+          </figure>
+        </div>
+        <div class="column is-half has-text-centered">
+          <figure style="display: inline-block;">
+            <img src="static/images/alg_ours.jpg" style="max-width:100%; height:auto;" alt="Annealing Scheduler (Ours)">
+            <figcaption><small><b>Annealing Scheduler (Ours)</b></small></figcaption>
+          </figure>
+        </div>
+      </div>
+
       <div class="content has-text-justified">
 <p>
   Our method replaces the fixed guidance scale used in CFG <b>(left)</b> with a learned scheduler that adaptively adjusts the guidance strength at every denoising step <span style="color: red;">(highlighted in red)</span>, as shown in <b>our algorithm (right)</b>. Instead of using a constant guidance scale, the scheduler computes a sample-specific value based on the current timestep, the difference between the model's conditional and unconditional predictions, and a user-defined prompt-alignment trade-off parameter &lambda;, which offers superior control than traditional guidance scale <code>w</code>. Similarly to CFG++, we use the null-condition prediction at the renoising step <span style="color: red;">(highlighted in red)</span>.
@@ -222,14 +223,19 @@
 
 
       </div>
-      <div class="columns is-vcentered is-centered">
-        <div class="column is-half is-flex is-justify-content-center is-align-items-center">
-          <img class="my-image" src="static\images\anneal\anneal_images.jpg" style="max-height:500px; width:auto;">
-        </div>
-        <div class="column is-half is-flex is-justify-content-center is-align-items-center">
-          <img class="my-image" src="static\images\anneal\anneal_plot.jpg" style="max-height:500px; width:auto;">
-        </div>
-      </div>
+<div class="columns is-mobile is-centered is-vcentered">
+  <div class="column is-half">
+    <figure class="has-text-centered">
+      <img class="my-image" src="static/images/anneal/anneal_images.jpg" style="max-height:500px; width:auto;" alt="Anneal Outputs">
+    </figure>
+  </div>
+  <div class="column is-half">
+    <figure class="has-text-centered">
+      <img class="my-image" src="static/images/anneal/anneal_plot.jpg" style="max-height:500px; width:auto;" alt="Anneal Plot">
+    </figure>
+  </div>
+</div>
+
 
       <div class="content has-text-justified">
 <p>
@@ -256,15 +262,20 @@
         </p>
       </div>
 
-      <!-- Side-by-side tradeoff figures -->
-      <div class="columns is-centered is-vcentered">
-        <div class="column is-half is-flex is-justify-content-center">
-          <img class="my-image" src="static\metrics\fid_vs_clip.jpg" style="max-height:400px; width:auto;">
-        </div>
-        <div class="column is-half is-flex is-justify-content-center">
-          <img class="my-image" src="static\metrics\fd_dino_vs_clip.jpg" style="max-height:400px; width:auto;">
-        </div>
-      </div>
+<!-- Side-by-side tradeoff figures -->
+<div class="columns is-mobile is-vcentered is-centered">
+  <div class="column is-half">
+    <figure class="has-text-centered">
+      <img class="my-image" src="static/metrics/fid_vs_clip.jpg" style="max-height:400px; width:auto;" alt="FID vs CLIP">
+    </figure>
+  </div>
+  <div class="column is-half">
+    <figure class="has-text-centered">
+      <img class="my-image" src="static/metrics/fd_dino_vs_clip.jpg" style="max-height:400px; width:auto;" alt="FD-DINO vs CLIP">
+    </figure>
+  </div>
+</div>
+
 
       <div class="content has-text-justified">
         <p>
@@ -328,11 +339,17 @@
     <div class="columns is-mobile is-centered">
       <div class="column is-half">
         <figure class="tight-figure">
+          <figcaption class="is-size-5 has-text-centered is-hidden-tablet">
+            CFG
+          </figcaption>
           <img class="my-image" src="static/images/comparison/cfg_2.jpg" style="width:100%;">
         </figure>
       </div>
       <div class="column is-half">
         <figure class="tight-figure">
+          <figcaption class="is-size-5 has-text-centered is-hidden-tablet">
+            Ours
+          </figcaption>
           <img class="my-image" src="static/images/comparison/ours_cfg_2.jpg" style="width:100%;">
         </figure>
       </div>
@@ -347,11 +364,17 @@
     <div class="columns is-mobile is-centered">
       <div class="column is-half">
         <figure class="tight-figure">
+          <figcaption class="is-size-5 has-text-centered is-hidden-tablet">
+            CFG++
+          </figcaption>
           <img class="my-image" src="static/images/comparison/cfgpp_2.jpg" style="width:100%;">
         </figure>
       </div>
       <div class="column is-half">
         <figure class="tight-figure">
+          <figcaption class="is-size-5 has-text-centered is-hidden-tablet">
+            Ours
+          </figcaption>
           <img class="my-image" src="static/images/comparison/ours_cfgpp_2.jpg" style="width:100%;">
         </figure>
       </div>
@@ -367,11 +390,17 @@
     <div class="columns is-mobile is-centered">
       <div class="column is-half">
         <figure class="tight-figure">
+          <figcaption class="is-size-5 has-text-centered is-hidden-tablet">
+            CFG
+          </figcaption>
           <img class="my-image" src="static/images/comparison/cfg_3.jpg" style="width:100%;">
         </figure>
       </div>
       <div class="column is-half">
         <figure class="tight-figure">
+          <figcaption class="is-size-5 has-text-centered is-hidden-tablet">
+            Ours
+          </figcaption>
           <img class="my-image" src="static/images/comparison/ours_cfg_3.jpg" style="width:100%;">
         </figure>
       </div>
@@ -386,11 +415,17 @@
     <div class="columns is-mobile is-centered">
       <div class="column is-half">
         <figure class="tight-figure">
+          <figcaption class="is-size-5 has-text-centered is-hidden-tablet">
+            CFG++
+          </figcaption>
           <img class="my-image" src="static/images/comparison/cfgpp_3.jpg" style="width:100%;">
         </figure>
       </div>
       <div class="column is-half">
         <figure class="tight-figure">
+          <figcaption class="is-size-5 has-text-centered is-hidden-tablet">
+            Ours
+          </figcaption>
           <img class="my-image" src="static/images/comparison/ours_cfgpp_3.jpg" style="width:100%;">
         </figure>
       </div>
@@ -406,11 +441,17 @@
     <div class="columns is-mobile is-centered">
       <div class="column is-half">
         <figure class="tight-figure">
+          <figcaption class="is-size-5 has-text-centered is-hidden-tablet">
+            CFG
+          </figcaption>
           <img class="my-image" src="static/images/comparison/cfg_4.jpg" style="width:100%;">
         </figure>
       </div>
       <div class="column is-half">
         <figure class="tight-figure">
+          <figcaption class="is-size-5 has-text-centered is-hidden-tablet">
+            Ours
+          </figcaption>
           <img class="my-image" src="static/images/comparison/ours_cfg_4.jpg" style="width:100%;">
         </figure>
       </div>
@@ -425,11 +466,17 @@
     <div class="columns is-mobile is-centered">
       <div class="column is-half">
         <figure class="tight-figure">
+          <figcaption class="is-size-5 has-text-centered is-hidden-tablet">
+            CFG++
+          </figcaption>
           <img class="my-image" src="static/images/comparison/cfgpp_4.jpg" style="width:100%;">
         </figure>
       </div>
       <div class="column is-half">
         <figure class="tight-figure">
+          <figcaption class="is-size-5 has-text-centered is-hidden-tablet">
+            Ours
+          </figcaption>
           <img class="my-image" src="static/images/comparison/ours_cfgpp_4.jpg" style="width:100%;">
         </figure>
       </div>
@@ -445,11 +492,17 @@
     <div class="columns is-mobile is-centered">
       <div class="column is-half">
         <figure class="tight-figure">
+          <figcaption class="is-size-5 has-text-centered is-hidden-tablet">
+            CFG
+          </figcaption>
           <img class="my-image" src="static/images/comparison/cfg_5.jpg" style="width:100%;">
         </figure>
       </div>
       <div class="column is-half">
         <figure class="tight-figure">
+          <figcaption class="is-size-5 has-text-centered is-hidden-tablet">
+            Ours
+          </figcaption>
           <img class="my-image" src="static/images/comparison/ours_cfg_5.jpg" style="width:100%;">
         </figure>
       </div>
@@ -464,11 +517,17 @@
     <div class="columns is-mobile is-centered">
       <div class="column is-half">
         <figure class="tight-figure">
+          <figcaption class="is-size-5 has-text-centered is-hidden-tablet">
+            CFG++
+          </figcaption>
           <img class="my-image" src="static/images/comparison/cfgpp_5.jpg" style="width:100%;">
         </figure>
       </div>
       <div class="column is-half">
         <figure class="tight-figure">
+          <figcaption class="is-size-5 has-text-centered is-hidden-tablet">
+            Ours
+          </figcaption>
           <img class="my-image" src="static/images/comparison/ours_cfgpp_5.jpg" style="width:100%;">
         </figure>
       </div>
@@ -484,11 +543,17 @@
     <div class="columns is-mobile is-centered">
       <div class="column is-half">
         <figure class="tight-figure">
+          <figcaption class="is-size-5 has-text-centered is-hidden-tablet">
+            CFG
+          </figcaption>
           <img class="my-image" src="static/images/comparison/cfg_6.jpg" style="width:100%;">
         </figure>
       </div>
       <div class="column is-half">
         <figure class="tight-figure">
+          <figcaption class="is-size-5 has-text-centered is-hidden-tablet">
+            Ours
+          </figcaption>
           <img class="my-image" src="static/images/comparison/ours_cfg_6.jpg" style="width:100%;">
         </figure>
       </div>
@@ -503,11 +568,17 @@
     <div class="columns is-mobile is-centered">
       <div class="column is-half">
         <figure class="tight-figure">
+          <figcaption class="is-size-5 has-text-centered is-hidden-tablet">
+            CFG++
+          </figcaption>
           <img class="my-image" src="static/images/comparison/cfgpp_6.jpg" style="width:100%;">
         </figure>
       </div>
       <div class="column is-half">
         <figure class="tight-figure">
+          <figcaption class="is-size-5 has-text-centered is-hidden-tablet">
+            Ours
+          </figcaption>
           <img class="my-image" src="static/images/comparison/ours_cfgpp_6.jpg" style="width:100%;">
         </figure>
       </div>
@@ -523,11 +594,17 @@
     <div class="columns is-mobile is-centered">
       <div class="column is-half">
         <figure class="tight-figure">
+          <figcaption class="is-size-5 has-text-centered is-hidden-tablet">
+            CFG
+          </figcaption>
           <img class="my-image" src="static/images/comparison/cfg_7.jpg" style="width:100%;">
         </figure>
       </div>
       <div class="column is-half">
         <figure class="tight-figure">
+          <figcaption class="is-size-5 has-text-centered is-hidden-tablet">
+            Ours
+          </figcaption>
           <img class="my-image" src="static/images/comparison/ours_cfg_7.jpg" style="width:100%;">
         </figure>
       </div>
@@ -542,11 +619,17 @@
     <div class="columns is-mobile is-centered">
       <div class="column is-half">
         <figure class="tight-figure">
+          <figcaption class="is-size-5 has-text-centered is-hidden-tablet">
+            CFG++
+          </figcaption>
           <img class="my-image" src="static/images/comparison/cfgpp_7.jpg" style="width:100%;">
         </figure>
       </div>
       <div class="column is-half">
         <figure class="tight-figure">
+          <figcaption class="is-size-5 has-text-centered is-hidden-tablet">
+            Ours
+          </figcaption>
           <img class="my-image" src="static/images/comparison/ours_cfgpp_7.jpg" style="width:100%;">
         </figure>
       </div>
@@ -562,11 +645,17 @@
     <div class="columns is-mobile is-centered">
       <div class="column is-half">
         <figure class="tight-figure">
+          <figcaption class="is-size-5 has-text-centered is-hidden-tablet">
+            CFG
+          </figcaption>
           <img class="my-image" src="static/images/comparison/cfg_8.jpg" style="width:100%;">
         </figure>
       </div>
       <div class="column is-half">
         <figure class="tight-figure">
+          <figcaption class="is-size-5 has-text-centered is-hidden-tablet">
+            Ours
+          </figcaption>
           <img class="my-image" src="static/images/comparison/ours_cfg_8.jpg" style="width:100%;">
         </figure>
       </div>
@@ -581,11 +670,17 @@
     <div class="columns is-mobile is-centered">
       <div class="column is-half">
         <figure class="tight-figure">
+          <figcaption class="is-size-5 has-text-centered is-hidden-tablet">
+            CFG++
+          </figcaption>
           <img class="my-image" src="static/images/comparison/cfgpp_8.jpg" style="width:100%;">
         </figure>
       </div>
       <div class="column is-half">
         <figure class="tight-figure">
+          <figcaption class="is-size-5 has-text-centered is-hidden-tablet">
+            Ours
+          </figcaption>
           <img class="my-image" src="static/images/comparison/ours_cfgpp_8.jpg" style="width:100%;">
         </figure>
       </div>
@@ -601,11 +696,17 @@
     <div class="columns is-mobile is-centered">
       <div class="column is-half">
         <figure class="tight-figure">
+          <figcaption class="is-size-5 has-text-centered is-hidden-tablet">
+            CFG
+          </figcaption>
           <img class="my-image" src="static/images/comparison/cfg_9.jpg" style="width:100%;">
         </figure>
       </div>
       <div class="column is-half">
         <figure class="tight-figure">
+          <figcaption class="is-size-5 has-text-centered is-hidden-tablet">
+            Ours
+          </figcaption>
           <img class="my-image" src="static/images/comparison/ours_cfg_9.jpg" style="width:100%;">
         </figure>
       </div>
@@ -620,11 +721,17 @@
     <div class="columns is-mobile is-centered">
       <div class="column is-half">
         <figure class="tight-figure">
+          <figcaption class="is-size-5 has-text-centered is-hidden-tablet">
+            CFG++
+          </figcaption>
           <img class="my-image" src="static/images/comparison/cfgpp_9.jpg" style="width:100%;">
         </figure>
       </div>
       <div class="column is-half">
         <figure class="tight-figure">
+          <figcaption class="is-size-5 has-text-centered is-hidden-tablet">
+            Ours
+          </figcaption>
           <img class="my-image" src="static/images/comparison/ours_cfgpp_9.jpg" style="width:100%;">
         </figure>
       </div>
@@ -640,11 +747,17 @@
     <div class="columns is-mobile is-centered">
       <div class="column is-half">
         <figure class="tight-figure">
+          <figcaption class="is-size-5 has-text-centered is-hidden-tablet">
+            CFG
+          </figcaption>
           <img class="my-image" src="static/images/comparison/cfg_10.jpg" style="width:100%;">
         </figure>
       </div>
       <div class="column is-half">
         <figure class="tight-figure">
+          <figcaption class="is-size-5 has-text-centered is-hidden-tablet">
+            Ours
+          </figcaption>
           <img class="my-image" src="static/images/comparison/ours_cfg_10.jpg" style="width:100%;">
         </figure>
       </div>
@@ -659,11 +772,17 @@
     <div class="columns is-mobile is-centered">
       <div class="column is-half">
         <figure class="tight-figure">
+          <figcaption class="is-size-5 has-text-centered is-hidden-tablet">
+            CFG++
+          </figcaption>
           <img class="my-image" src="static/images/comparison/cfgpp_10.jpg" style="width:100%;">
         </figure>
       </div>
       <div class="column is-half">
         <figure class="tight-figure">
+          <figcaption class="is-size-5 has-text-centered is-hidden-tablet">
+            Ours
+          </figcaption>
           <img class="my-image" src="static/images/comparison/ours_cfgpp_10.jpg" style="width:100%;">
         </figure>
       </div>
