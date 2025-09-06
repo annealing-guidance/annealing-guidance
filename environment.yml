@@ -226,7 +226,7 @@ dependencies:
       - importlib-metadata==8.7.0
       - kiwisolver==1.4.9
       - matplotlib==3.10.5
-      - numpy==2.3.2
+      - numpy
       - nvidia-cublas-cu12==12.6.4.1
       - nvidia-cuda-cupti-cu12==12.6.80
       - nvidia-cuda-nvrtc-cu12==12.6.77
