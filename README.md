@@ -12,6 +12,13 @@
 </p>
 
 
+We train a guidance scale model that predicts the optimal guidance scale at each denoising step. This model leverages the null prediction for renoising, as illustrated below:
+
+<p align="center">
+<img src="assets/alg_ours.jpg" width="800px"/>
+</p>
+
+
 ## Environment Setup
 
 Create and activate the conda environment using the provided `environment.yml`:
