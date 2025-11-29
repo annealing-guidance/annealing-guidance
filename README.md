@@ -1,4 +1,4 @@
-## Navigating with Annealing Guidance Scale in Diffusion Space
+## Navigating with Annealing Guidance Scale in Diffusion Space (SIGGRAPH Asia 2025)
 
 > **Shai Yehezkel\*, Omer Dahary\*, Andrey Voynov, Daniel Cohen-Or**
 >
@@ -30,7 +30,7 @@ conda activate annealing-guidance
 
 ---
 
-## Running
+## Inference
 
 To sample images with the trained annealing scheduler, edit and execute the script:
 
@@ -38,11 +38,36 @@ To sample images with the trained annealing scheduler, edit and execute the scri
 python scripts/sample.py
 ```
 
+## Training
+
+### Preparing the Data
+
+Our training pipeline uses LAION data. To prepare the dataset, run:
+
+```sh
+python src/data/laion/download_parquet.py
+
+cd src/data/laion  
+bash to_dataset.sh
+```
+
+
+### Running Training
+
+Start training with:
+
+```sh
+python scripts/train.py
+```
+The full training configuration is defined in: `scripts/config.yaml`.
+
+
 ---
 
 ## Acknowledgements 
-This code builds on the code from the [diffusers](https://github.com/huggingface/diffusers) library.
-
+- This code builds on the code from the [diffusers](https://github.com/huggingface/diffusers) library.
+- **CFG++** for the renoising (null-prediction) step: https://github.com/CFGpp-diffusion/CFGpp  
+- **CADS** for adding noise to the conditioning signal: https://arxiv.org/abs/2310.17347
 ## Citation
 If you use this code for your research, please cite the following work: 
 ```

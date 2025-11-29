@@ -1,0 +1,46 @@
+seed: 42
+low_memory: false
+diffusion:
+  model_id: stabilityai/stable-diffusion-xl-base-1.0
+  num_timesteps: 50
+  vanilla_cfg: 1
+  scheduler_kwargs:
+    beta_start: 0.00085
+    beta_end: 0.012
+    beta_schedule: scaled_linear
+    clip_sample: false
+    set_alpha_to_one: true
+    pred_sample_direction_with_null: true
+
+guidance_scale_model:
+  type: scalar_mlp
+  hidden_size: 128
+  output_size: 1
+  n_layers: 3
+  noise_metric: norm
+  lambda_embed_dim: 4
+  delta_embed_dim: 4
+  t_embed_dim: 4
+  t_embed_normalization: 1000
+  delta_embed_normalization: 5.0
+  w_scale: 1
+  w_bias: 1
+
+training:
+  save_interval: 200
+  max_steps: 20000
+  batch_size: 1
+  accumulation_steps: 16
+  out_dir: ./output
+  image_root: src/data/laion/laion_top20k_images/
+  optimizer_kwargs:
+    weight_decay: 0.01
+    lr: 0.001
+
+  prompt_noise:
+    add_noise: true # Whether to add noise to prompt embeddings during training
+    noise_scale: 0.025
+    rescale: true
+    psi: 1
+    t1: 0
+    t2: 1
